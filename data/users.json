@@ -1,0 +1,37 @@
+[
+
+   
+    {
+        "username": "aaa" ,
+        "password": "aaa",
+        "firstname": "aaa",
+        "lastname": "lname",
+        "email":"222@test.com",
+        "door_no":"#111",
+        "street_addr":"street 1",
+        "zipcode":"12345",
+        "city":"Santa Clara",
+        "state":"12344",
+        "country":"United States",
+        "phone_no":"222-333-4444",
+        "created_date":"2020-03-13"
+
+    },
+    {
+        "username": "bbb" ,
+        "password": "bbb",
+        "firstname": "bbb",
+        "lastname": "lnamebbb",
+        "email":"bbb@test.com",
+        "door_no":"#222",
+        "street_addr":"street 2",
+        "zipcode":"12346",
+        "city":"San Jose",
+        "state":"CA",
+        "country":"United States",
+        "phone_no":"408-333-4444",
+        "created_date":"2020-02-13"
+
+    }
+]
+

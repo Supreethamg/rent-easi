@@ -1,0 +1,20 @@
+<html>
+
+
+<body><p>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+          <p class="bg-info" style="padding: 15px;">
+          {% for message in messages %}
+            {{ message }}<br>
+          {% endfor %}
+          </p>
+        {% endif %}
+      {% endwith %}
+      </p>
+    <form class="upload-form" action="/upload" method="POST" enctype="multipart/form-data">
+        <p><input type="file" name="file"></p>
+        <button type="submit" class="btn btn-primary">Upload</button>
+      </form>
+</body>
+</html>

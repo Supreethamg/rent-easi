@@ -1,0 +1,36 @@
+
+   
+    [
+
+   
+        {
+            "title": "tv" ,
+            "description": "new unused tv",
+            "s3_image_url": "",
+            "s3_video_url": "",
+            "condition":"good",
+            "available_from":"2020-03-13",
+            "available_to":"2020-04-13",
+            "price":100,
+            "status":"pending",
+            "isverified":false,
+            "created_date":"2020-03-13"
+    
+        },
+        {
+            "title": "sofa" ,
+            "description": "used sofa",
+            "s3_image_url": "",
+            "s3_video_url": "",
+            "condition":"excellent",
+            "available_from":"2020-01-10",
+            "available_to":"2020-07-15",
+            "price":200,
+            "status":"pending",
+            "isverified":false,
+            "created_date":"2020-03-14"
+    
+        }
+    ]
+    
+    

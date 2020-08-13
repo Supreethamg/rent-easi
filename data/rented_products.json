@@ -1,0 +1,23 @@
+
+    [
+
+   
+        {
+            "rented_from":"2020-03-13",
+            "rented_to":"2020-04-15",
+            "price":200,
+            "payment_id":1,
+            "created_date":"2020-03-13"
+    
+        },
+        {
+            "rented_from":"2020-04-05",
+            "rented_to":"2020-06-15",
+            "price":400,
+            "payment_id":2,
+            "created_date":"2020-03-13"
+    
+        }
+    ]
+    
+    
