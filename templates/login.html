@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block title %} Rent Easi Login{% endblock%}
+
+{% block body %}
+<h1>Welcome!</h1>
+<!-- <button id= 'btn_login'>Login</button>  <button id ='btn_create_ac'>Create account</button>
+<div id ="div_login" style="visibility: hidden;"> -->
+  <h2 id="heading">Login</h2>
+  <form  method ="POST" id='form_login' action='/api/login'>
+  
+    <p>
+        User Name  <input type="text" name="username">
+      </p>
+  
+      <p>
+        Password <input type="password" name="password">
+      </p>
+  
+      <p>
+        <input id ="action" type="submit" value='Submit'>
+      </p>
+      <div><label>Dont have an account? Register </label> <a id="register_link" href='/api/register'> here </a></p>
+    
+    </form>
+    
+      
+{% endblock %}

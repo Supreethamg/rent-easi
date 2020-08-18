@@ -50,10 +50,27 @@ class Product(db.Model):
     isverified = db.Column(db.String, nullable=False)
     created_date = db.Column(db.DateTime, nullable=False)
 
-    
     owner = db.relationship('User', backref='products')
     product_category = db.relationship('ProductCategory', backref='products')
    
+    def serialize(self):
+        return {
+            'product_id': self.product_id, 
+            'owner_id': self.owner_id,
+            'title': self.title,
+            'category_id': self.category_id, 
+            'description': self.description,
+            's3_image_url': self.s3_image_url,
+            's3_video_url': self.s3_video_url, 
+            'condition': self.condition,
+            'available_from': self.available_from,
+            'available_to': self.available_to, 
+            'price': self.price,
+            'status': self.status,
+            'isverified': self.isverified, 
+            'created_date': self.created_date,
+            'title': self.title,
+        }
 
     def __repr__(self):
         return f'<Product product_id={self.product_id} title={self.title}>'
@@ -68,9 +85,16 @@ class ProductCategory(db.Model):
     category_name = db.Column(db.String, nullable=False)
     created_date = db.Column(db.DateTime, nullable=False)
 
+
+    def serialize(self):
+        return {
+            'category_id': self.category_id, 
+            'category_name': self.category_name,
+            'created_date': self.created_date
+        }
     
     def __repr__(self):
-        return f'<Product Category category_id={self.product_id} name={self.category_name}>'
+        return f'<Product Category category_id={self.category_id} name={self.category_name}>'
 
 
 
@@ -94,6 +118,19 @@ class RentedProduct(db.Model):
     renter = db.relationship('User', backref='renters',foreign_keys=[renter_id])
     product = db.relationship('Product', uselist=False, backref='rented_product')
    
+
+    def serialize(self):
+        return {
+            'rented_product_id': self.rented_product_id, 
+            'product_id': self.product_id,
+            'owner_id': self.owner_id,
+            'renter_id': self.renter_id, 
+            'rented_from': self.rented_from,
+            'rented_to': self.rented_to,
+            'price': self.price, 
+            'payment_id': self.payment_id,
+            'created_date': self.created_date
+        }
    
 
     def __repr__(self):

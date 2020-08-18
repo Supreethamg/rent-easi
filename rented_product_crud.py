@@ -24,6 +24,18 @@ def get_all_rproduct_ids():
     return ids
 
 
+def get_all_rentedproducts():
+    '''Returns dictionary of products availble for rent fetched from the db tabel'''
+    rproducts = RentedProduct.query.all()
+    rproducts_list={}
+    for idx,val in enumerate(rproducts):
+        rproducts_list[val.rented_product_id]=RentedProduct.serialize(val)
+    print(rproducts_list)
+    return rproducts_list
+
+
+
+
 if __name__ == '__main__':
     from server import app
     connect_to_db(app)

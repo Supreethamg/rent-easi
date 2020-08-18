@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+{% block title %} Create product Advertisement t{% endblock%}
+
+{% block body %}
+
+
+  <h2 id="heading">Create Ad</h2>
+  <form  method ="POST" id='form_post_ad' enctype="multipart/form-data">
+    
+    
+    
+    <p>Product Title : <input type="text" name="title">
+    </p>
+    <p>
+      category <select id="category" name ="category"> 
+        <option value="0">- Select -</option>
+      </select>
+    </p>
+    <p>
+      Description <input type="textarea" name="description">
+    </p>
+    <p>
+      Upload Image : <input type="file" name="image" id ="image">
+    </p>
+    <p>
+      Upload Video : <input type="file" name="video" id ="video">
+    </p>
+
+    <p>
+      Condition <input type="text" name="condition">
+    </p>
+    <p>
+      Available From : <input type="date" name="available_from">
+    </p>
+    <p>
+      Available To : <input type="date" name="available_to">
+    </p>
+    <p>
+      Price : <input type="text" name="price">
+    </p>
+      
+      
+  
+      <p>
+        <input id ="action" id ='post_ad_button' type="submit" value='Post'>
+      </p>
+      
+      
+    
+    </form>
+</div>
+<!-- <script>
+"use strict";
+$('#btn_login').on('click',(evt)=>{
+    
+    
+    $('#div_login').css('visibility', 'visible');
+   
+    const formdata = $( "#form_login" ).serialize();
+    
+    $.post('/login',formdata,(res)=>{});
+   
+ })
+
+
+$('#btn_create_ac').on('click',(evt)=>{
+    evt.preventDefault();
+    alert("create");
+   
+    
+    $('#heading').text('create account');
+    $('#div_login').css('visibility', 'visible');
+    const formdata = $( "#form_login" ).serialize();
+    $.post('/register',formdata,(res)=>{});
+
+})
+
+</script> -->
+
+{% endblock %}

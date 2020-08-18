@@ -1,4 +1,4 @@
-from model import db,User,Product,connect_to_db
+from model import db,User,Product,connect_to_db,RentedProduct
  
 def create_product(owner_id,title,description,category_id,s3_image_url,s3_video_url,condition,available_from,available_to,price,status,isverified,created_date):
     '''Create and return new User'''
@@ -25,6 +25,34 @@ def get_all_product_ids():
     for product in products:
         ids.append(product.product_id)
     return ids
+
+
+def get_all_products():
+    '''Returns dictionary of products fetched from the db tabel'''
+    products = Product.query.all()
+    products_list={}
+    for idx,val in enumerate(products):
+        products_list[val.product_id]=Product.serialize(val)
+    print(products_list)
+    return products_list
+
+
+def get_product_by_id(id):
+    product = Product.query.get(id)
+    #return Product.serialize(product)
+    return product
+
+def get_available_products():
+    subquery =db.session.query(RentedProduct.rented_product_id)
+    products = Product.query.filter(Product.product_id.notin_(subquery)).all()
+    print(f"products*******:{products}")
+    products_list={}
+    for idx,val in enumerate(products):
+        products_list[val.product_id]=Product.serialize(val)
+    print(products_list)
+    return products_list
+    
+
 
 
 if __name__ == '__main__':

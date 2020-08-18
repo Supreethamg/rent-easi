@@ -15,6 +15,15 @@ def get_product_category_ids():
     return ids
 
 
+def get_all_product_category():
+    '''Return dictionary of ProductCategory objects fetched from DB table '''
+    categoris = ProductCategory.query.all()
+    category_list={}
+    for idx,val in enumerate(categoris):
+        category_list[val.category_name]=ProductCategory.serialize(val)
+    return category_list
+
+
 if __name__ == '__main__':
     from server import app
     connect_to_db(app)

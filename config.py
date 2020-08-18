@@ -1,8 +1,6 @@
 import logging
 import boto3
 from botocore.exceptions import ClientError
-
-
 import os
 
 S3_BUCKET = os.environ.get("AWS_S3_BUCKET")
@@ -21,17 +19,12 @@ def get_s3_resource():
     else:
         return boto3.resource('s3')
 
+def get_bucket_name():
+    '''Returns s3 bucket name'''
+    return S3_BUCKET
 
 def get_bucket():
-     
-    # if 'bucket' in session:
-    #     bucket = session['bucket']
-    # else:
-    #     bucket = S3_BUCKET
-
+    ''' returns s3 bucket object'''
     return get_s3_resource().Bucket(S3_BUCKET)
 
 
-def get_buckets_list():
-    client = boto3.client('s3')
-    return client.list_buckets().get('Buckets')

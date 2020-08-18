@@ -3,7 +3,6 @@ import os
 import json
 from random import choice,randint
 from datetime import datetime
-
 import model
 import user_crud
 import product_crud

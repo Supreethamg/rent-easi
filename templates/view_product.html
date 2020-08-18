@@ -1,0 +1,57 @@
+{% extends 'homepage.html' %}
+{% block title %} View Product Ad{% endblock%}
+
+{% block body %}
+<div>
+    <div class="col-3"><image src={{product.s3_image_url}}></image></div>
+    <div class="col-5">
+        <P>product_id:{{product.product_id}}</P>
+        <P>Title :{{product.title}}</P>
+        <P>Category:{{product.product_category.category_name}}</P>
+        <P>Description:{{product.description}}</P>
+        <P>Price:{{product.price}}</P>
+        <P>Avaialble From:{{product.available_from}}</P>
+        <P>Available To:{{product.available_to}}</P>
+       
+
+
+    </div>
+
+    <button type="button" class="btn btn-info btn-lg" id="rent_button">Rent Now</button>
+
+  <!-- Modal -->
+  <div class="modal fade" id="rent_modal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Rent Now</h4>
+        </div>
+        <div class="modal-body">
+          <p>Some text in the modal.</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  
+  
+</div>
+
+<script>
+$(document).ready(function(){
+  $("#rent_button").click(function(){
+    $("#rent_modal").modal();
+  });
+});
+</script>
+      
+
+    
+</div>
+
+{% endblock %}

@@ -27,6 +27,13 @@ def get_user_ids():
         ids.append(user.user_id)
     return ids
 
+def get_user_by_name(name):
+    user = User.query.filter(User.username == name).first()
+    return user
+def get_user_by_id(id):
+    user = User.query.filter(User.user_id == id).first()
+    return user
+    
 if __name__ == '__main__':
     from server import app
     connect_to_db(app)

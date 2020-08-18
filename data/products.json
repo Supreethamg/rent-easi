@@ -6,7 +6,7 @@
         {
             "title": "tv" ,
             "description": "new unused tv",
-            "s3_image_url": "",
+            "s3_image_url": "https://rent-easi.s3.us-east-2.amazonaws.com/LG-43LH600T-L.jpg",
             "s3_video_url": "",
             "condition":"good",
             "available_from":"2020-03-13",
@@ -20,7 +20,7 @@
         {
             "title": "sofa" ,
             "description": "used sofa",
-            "s3_image_url": "",
+            "s3_image_url": "https://rent-easi.s3.us-east-2.amazonaws.com/center_table.jpg",
             "s3_video_url": "",
             "condition":"excellent",
             "available_from":"2020-01-10",

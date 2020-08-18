@@ -1,0 +1,82 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>
+      {% block title %}{% endblock %}
+    </title>
+
+    {% block head %}{% endblock %}
+    <script
+      src="https://code.jquery.com/jquery-3.4.1.js"
+      integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+      crossorigin="anonymous">
+  </script>
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" 
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" 
+      crossorigin="anonymous">
+  <!-- Load Font Awesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css"
+   integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg"
+    crossorigin="anonymous">
+    <link rel="stylesheet" href="/static/css/bootstrap_style.css">
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+
+      <a id="ubermelon-logo" class="navbar-brand" href="#">Rent Easi</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+  
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        
+        <ul class="navbar-nav ml-auto">
+          {% if not session.current_user %}
+          <li class="nav-item" >
+            
+            <a class="nav-link" id ="login_link" href="/api/login">Login</a>
+          </li>
+            {% else: %}
+            <li>
+
+              <a class="nav-link" id ="user_name" href="#">{{session['current_user_name']}}</a>
+            </li>
+            <li class="nav-item" >
+            
+            <a class="nav-link" id ="logout_link" href="/api/logout">Logout</a>
+          </li>
+            {% endif%}
+          
+          
+          
+        </ul>
+      </div>
+  
+    </nav>
+    {% for msg in get_flashed_messages() %}
+      <p class="flash-msg">
+        {{ msg }}
+      </p>
+    {% endfor %}
+    
+    {% block body %}{% endblock %}
+
+    {% block after_body %}{% endblock %}
+    
+  </body>
+  
+  <script src='/static/js/post_ad.js'></script>
+  <script src='/static/js/view_products.js'></script>
+  <script src='/static/js/user.js'></script>
+  
+ 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" 
+  integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
+</script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" 
+  integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+   crossorigin="anonymous">
+</script>
+</html>
