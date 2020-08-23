@@ -9,6 +9,7 @@ import user_crud
 from datetime import datetime
 import product_category_crud
 import product_crud
+import rented_product_crud
 
 
 app = Flask(__name__)
@@ -20,7 +21,7 @@ app.jinja_env.undefined = StrictUndefined
 
 @app.route('/')
 def base():
-    session['current_user']= None
+    # session['current_user']= None
     return redirect('/api/login')
 
 @app.route('/api/register')
@@ -70,6 +71,7 @@ def user_login():
         if password == user.password:
             session['current_user'] =  user.user_id
             session['current_user_name'] =  user.username
+            
             flash('Logged In!!')
             return redirect('/api/home')
         else:
@@ -120,16 +122,16 @@ def post_ad():
     print(f'image:{video_file}')
     condition= request.form.get("condition")
     available_from=request.form.get("available_from")
-    available_from = datetime.strptime(available_from,'%Y-%m-%d')
+    available_from = datetime.strptime(available_from,'%Y-%m-%d').date()
     available_to= request.form.get("available_to")
-    available_to = datetime.strptime(available_to,'%Y-%m-%d')
+    available_to = datetime.strptime(available_to,'%Y-%m-%d').date()
+    print(f"available_from:{available_from}")
     price=request.form.get("price")
     created_date = datetime.date(datetime.now())
     owner_id = session['current_user']
     upload_file(image_file)
     s3_image_url = get_s3_url(image_file.filename)
     s3_video_url = get_s3_url(video_file)
-
     product_crud.create_product(owner_id,title,description,category,s3_image_url,s3_video_url,condition,available_from,available_to,price,'pending',False,created_date)
     flash('Ad created successfully')
     return jsonify(dict(redirect='/api/home'))
@@ -155,6 +157,34 @@ def get_product(product_id):
 
     return render_template('view_product.html', product=product)
     
+
+@app.route('/api/rent-product',methods=['POST'])
+def rent_product():
+
+    print("rent product server *********************")
+    product_id=request.form.get("product_id")
+    print(f"product_id  mmmmmmmm:{product_id}")
+    rented_from=request.form.get("datepicker_from")
+    rented_to=request.form.get("datepicker_to")
+    price = request.form.get("total")
+    renter_id=user_crud.get_user_by_id(session['current_user']).user_id
+    product = product_crud.get_product_by_id(product_id)
+    created_date = datetime.date(datetime.now())
+    print(f'price:{price}')
+    rproduct = rented_product_crud.create_rented_product(product_id,product.owner_id,renter_id,rented_from,rented_to,price,None,created_date)
+    if rproduct:
+        flash(f'You rented {product.title}!!')
+    
+    return redirect("/api/home")
+
+@app.route('/api/search',methods=['POST'])
+def search_product():
+    """Show search result on a particular product."""
+    search_key=request.form.get("searchKey")
+    print(f'seachkey:{search_key}')
+    products = product_crud.get_products(search_key)
+
+    return jsonify(products)
 # @app.route('/file')
 # def upload_file_page():
 #     return render_template('file.html')

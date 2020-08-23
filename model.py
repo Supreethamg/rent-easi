@@ -111,7 +111,7 @@ class RentedProduct(db.Model):
     rented_from = db.Column(db.DateTime, nullable=False)
     rented_to=  db.Column(db.DateTime, nullable=False)
     price = db.Column(db.Float, nullable=False)
-    payment_id = db.Column(db.Integer ,nullable=False)
+    payment_id = db.Column(db.Integer ,nullable=True)
     created_date = db.Column(db.DateTime, nullable=False)
 
     owner = db.relationship('User', backref='rented_products',foreign_keys=[owner_id])

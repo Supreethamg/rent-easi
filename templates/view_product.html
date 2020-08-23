@@ -26,31 +26,42 @@
       <!-- Modal content-->
       <div class="modal-content">
         <div class="modal-header">
+         <h4 class="modal-title">Rent Now</h4>
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Rent Now</h4>
+          
         </div>
-        <div class="modal-body">
-          <p>Some text in the modal.</p>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        </div>
+        <form action="/api/rent-product" method="POST" id="form_rent">
+            <div class="modal-body">
+           
+                <p>Product : {{product.title}}</p>
+                <p>price : <span>{{product.price}}</span></p>
+                <p>Avaiable From : {{product.available_from.strftime('%m-%d-%Y')}}</p>
+                <p>Avaiable To : {{product.available_to.strftime('%m-%d-%Y')}}</p>
+                <p>Rent from : <input type="text" id="datepicker_from"  name="datepicker_from"></p>
+                <p>Rent To : <input type="text" id="datepicker_to"  name="datepicker_to"></p>
+                <p>Total Price : <span id="total_price">0.00 <span>$</span></span></p>
+                <input type="hidden" id="available_from_date" name="available_from_date" value={{product.available_from}}/>
+                <input type="hidden" id="available_to_date"  name="available_to_date" value={{product.available_to}}/>
+                <input type="hidden" id="price" name="price" value={{product.price}} />
+                <input type="hidden" id="total" name="total" />
+            
+            </div>
+       
+            <div class="modal-footer">
+           
+                <input type="hidden" value={{product.product_id}} id="product_id" name="product_id" ></input></P>
+                <input type="submit" id="modal_rent_button"  value="Rent Now"/>
+                
+            
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </form>
       </div>
       
     </div>
   
   
 </div>
-
-<script>
-$(document).ready(function(){
-  $("#rent_button").click(function(){
-    $("#rent_modal").modal();
-  });
-});
-</script>
-      
-
     
 </div>
 

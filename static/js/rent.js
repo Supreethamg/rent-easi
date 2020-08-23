@@ -1,16 +1,4 @@
-
-
 $(document).ready(function(){
-   $.get('/api/get-available-products',(res)=>{
-
-   
-    for( key in res){
-        $('#list_products_div').append("<div><div>"+res[key].title+"</div><div>"+res[key].description+"</div></div>")
-         $('#list_products_div').append("<a href='/api/get-product/"+res[key].product_id+"'><img src='"+res[key].s3_image_url+"'/></a>")
-    }
-
-   });
-   
 
     function calculatePrice(start,end,values){
             diffDays = Math.round(Math.abs((start - end)/(values)));
@@ -18,13 +6,14 @@ $(document).ready(function(){
             total_price = diffDays * price;
             $('#total_price').text(total_price);
             $('#total').val(total_price);
+            
 
     };
 
   $("#rent_button").click(function(){
         $("#rent_modal").modal();
     });
-    
+
 
     $("#datepicker_from").datepicker({
         onClose: function () {
@@ -53,18 +42,7 @@ $(document).ready(function(){
     }
     });
 
-    $("#random_key").on("keyup", function() {
-        var value = $(this).val().toLowerCase();
-        $(".dropdown-menu li").filter(function() {
-          $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-        });
-      });
     
-}); 
+    
 
-   
-
-
-
-
-  
+});

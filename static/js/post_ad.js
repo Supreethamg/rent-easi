@@ -39,7 +39,7 @@ $('#form_post_ad').on('submit',(evt)=>{
 
 $(document).ready(function(){
     $.get('/api/get-all-categories', (res) => {       
-                    console.log(res)
+                    console.log(res);
                     for(const key in res){
                         $("#category").append("<option value='"+res[key].category_id+"'>"+res[key].category_name+"</option>");
                     }

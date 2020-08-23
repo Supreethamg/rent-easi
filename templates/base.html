@@ -41,6 +41,15 @@
             {% else: %}
             <li>
 
+              <div class="search-container">
+                <div class="form-inline my-2 my-lg-0" >
+                  <input class="form-control mr-sm-2" id="searchKey" type="search" placeholder="Search">
+                  <button class="btn btn-outline-success my-2 my-sm-0" id="search_button" >Search</button>
+                </div>
+              </div>
+           </li>
+            <li>
+
               <a class="nav-link" id ="user_name" href="#">{{session['current_user_name']}}</a>
             </li>
             <li class="nav-item" >
@@ -68,8 +77,9 @@
   </body>
   
   <script src='/static/js/post_ad.js'></script>
+  <script src='/static/js/rent.js'></script>
   <script src='/static/js/view_products.js'></script>
-  <script src='/static/js/user.js'></script>
+  <script src='/static/js/search.js'></script>
   
  
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" 
@@ -78,5 +88,9 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" 
   integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
    crossorigin="anonymous">
+
 </script>
+<link href = "https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css"
+rel = "stylesheet">
+<script src = "https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
 </html>
