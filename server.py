@@ -148,13 +148,27 @@ def get_available_products():
     return jsonify(products)
 
 
+@app.route('/api/my-ads')
+def get_user_ads():
+    products= product_crud.get_user_ads(session['current_user'])
+    if not products:
+        flash('Currrently your have not posted product ads!')
+    return jsonify(products)
+
+
+@app.route('/api/my-rentals')
+def get_user_rentals():
+    products= product_crud.get_user_rentals(session['current_user'])
+    if not products:
+        flash('Currrently your have not rented any products!')
+    return jsonify(products)
+
 
 @app.route('/api/get-product/<product_id>')
 def get_product(product_id):
     """Show details on a particular product."""
     print("inside get_product  :{product_id}")
     product = product_crud.get_product_by_id(product_id)
-
     return render_template('view_product.html', product=product)
     
 

@@ -71,7 +71,26 @@ def get_products(search_key):
         products_list[val.product_id]=Product.serialize(val)
     return products_list
 
+def get_user_ads(user_id):
+    ''' Takes userid  and returns products that he posted.'''
+    products = Product.query.filter(Product.owner_id==user_id).all()
+    products_list={}
+    for idx,val in enumerate(products):
+        products_list[val.product_id]=Product.serialize(val)
+    print(products_list)
+    return products_list
 
+def get_user_rentals(user_id):
+    ''' Takes userid  and returns products that he Rented.'''
+    subquery =db.session.query(RentedProduct.product_id).filter(RentedProduct.renter_id == user_id)
+    products = Product.query.filter(Product.product_id.in_(subquery)).all()
+    products_list={}
+    for idx,val in enumerate(products):
+        products_list[val.product_id]=Product.serialize(val)
+    print(products_list)
+    return products_list
+          
+    
 
 if __name__ == '__main__':
     from server import app

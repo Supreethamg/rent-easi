@@ -35,13 +35,14 @@ $(document).ready(function(){
 
         },
         onSelect: function(dateText, inst) {
-           start= $("#datepicker_from").datepicker('getDate').getTime(),
+            start= $("#datepicker_from").datepicker('getDate').getTime(),
             end = $("#datepicker_to").datepicker('getDate').getTime(),
             values = 24*60*60*1000,
             calculatePrice(start,end,values);
     }
     });
 
+   
     
     
 
