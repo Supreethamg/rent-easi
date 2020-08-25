@@ -12,6 +12,11 @@
         <P>Price:{{product.price}}</P>
         <P>Avaialble From:{{product.available_from}}</P>
         <P>Available To:{{product.available_to}}</P>
+        <P>Video: <video width="300" controls>
+          <source src={{product.s3_video_url}} type="video/mp4">
+          
+          Your browser does not support HTML video.
+        </video></P>
        
 
 

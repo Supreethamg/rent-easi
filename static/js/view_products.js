@@ -5,12 +5,21 @@ $(document).ready(function(){
 
    
     for( key in res){
-        $('#list_products_div').append("<div><div>"+res[key].title+"</div><div>"+res[key].description+"</div></div>")
-         $('#list_products_div').append("<a href='/api/get-product/"+res[key].product_id+"'><img src='"+res[key].s3_image_url+"'/></a>")
+        $('#list_products_div').append("<div class='col-sm-4'> <div class='panel panel-success'><div class='panel-heading'>Title:"+res[key].title+"</div><div class='panel-body'><a href='/api/get-product/"+res[key].product_id+"'><img src='"+res[key].s3_image_url+"'class='img-responsive' style='width:100%' alt='Image'/></a></div><div class='panel-footer'>Price:"+res[key].price+"</div></div></div></div>")
+         
     }
 
    });
    
+//    <div class="col-sm-4"> 
+//       <div class="panel panel-success">
+//         <div class="panel-heading">BLACK FRIDAY DEAL</div>
+//         <div class="panel-body"><img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image"></div>
+//         <div class="panel-footer">Buy 50 mobiles and get a gift card</div>
+//       </div>
+//     </div>
+//   </div>
+
 
     function calculatePrice(start,end,values){
             diffDays = Math.round(Math.abs((start - end)/(values)));

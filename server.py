@@ -21,7 +21,7 @@ app.jinja_env.undefined = StrictUndefined
 
 @app.route('/')
 def base():
-    # session['current_user']= None
+    session['current_user']= None
     return redirect('/api/login')
 
 @app.route('/api/register')
@@ -72,7 +72,6 @@ def user_login():
             session['current_user'] =  user.user_id
             session['current_user_name'] =  user.username
             
-            flash('Logged In!!')
             return redirect('/api/home')
         else:
             flash('Passwords do not match try again!!')
@@ -115,11 +114,12 @@ def post_ad():
     image_file= request.files["image"]
     
     if request.files["video"]:
-        video_file=request.files["video"].filename
+        video_file=request.files["video"]
+        upload_file(video_file)
     else:
         video_file=""
     print(f'image:{image_file.filename}')
-    print(f'image:{video_file}')
+    print(f'video:{video_file.filename}')
     condition= request.form.get("condition")
     available_from=request.form.get("available_from")
     available_from = datetime.strptime(available_from,'%Y-%m-%d').date()
@@ -130,8 +130,12 @@ def post_ad():
     created_date = datetime.date(datetime.now())
     owner_id = session['current_user']
     upload_file(image_file)
+
     s3_image_url = get_s3_url(image_file.filename)
-    s3_video_url = get_s3_url(video_file)
+    if video_file=="":
+        s3_video_url=""
+    else:
+        s3_video_url = get_s3_url(video_file.filename)
     product_crud.create_product(owner_id,title,description,category,s3_image_url,s3_video_url,condition,available_from,available_to,price,'pending',False,created_date)
     flash('Ad created successfully')
     return jsonify(dict(redirect='/api/home'))
