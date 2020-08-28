@@ -119,7 +119,7 @@ def post_ad():
     else:
         video_file=""
     print(f'image:{image_file.filename}')
-    print(f'video:{video_file.filename}')
+    print(f'video:{video_file}')
     condition= request.form.get("condition")
     available_from=request.form.get("available_from")
     available_from = datetime.strptime(available_from,'%Y-%m-%d').date()
@@ -149,6 +149,26 @@ def get_all_categories():
 @app.route('/api/get-available-products')
 def get_available_products():
     products= product_crud.get_available_products()
+    return jsonify(products)
+
+@app.route('/api/get-all-products')
+def get_all_products():
+    products= product_crud.get_all_products()
+    return jsonify(products)
+
+
+@app.route('/api/get-pending-products')
+def get_pending_products():
+    products= product_crud.get_pending_products()
+    if not products:
+        flash('Currrently No pending product ads for approval!')
+    return jsonify(products)
+
+@app.route('/api/get-approved-products')
+def get_approved_products():
+    products= product_crud.get_approved_products()
+    if not products:
+        flash('Currrently no approved product ads!')
     return jsonify(products)
 
 
@@ -195,6 +215,15 @@ def rent_product():
     
     return redirect("/api/home")
 
+
+@app.route('/api/approve-ads',methods=['POST'])
+def approve_ad():
+    product_id=request.form.get("productId")
+    product_crud.approve_ad(product_id)
+    flash("Ad Approved!")
+    return jsonify(dict(redirect='/api/home'))
+
+    
 @app.route('/api/search',methods=['POST'])
 def search_product():
     """Show search result on a particular product."""

@@ -18,7 +18,7 @@ def create_product(owner_id,title,description,category_id,s3_image_url,s3_video_
                 created_date=created_date)
     db.session.add(product)
     db.session.commit()
-    print(f"imserted:{product}")
+    print(f"inserted:{product}")
     return product
 
 def get_all_product_ids():
@@ -38,16 +38,41 @@ def get_all_products():
     print(products_list)
     return products_list
 
+def get_approved_products():
+    '''Returns dictionary of products fetched from the db tabel'''
+    products = Product.query.filter(Product.status=="approved").all()
+    products_list={}
+    for idx,val in enumerate(products):
+        products_list[val.product_id]=Product.serialize(val)
+    print(products_list)
+    return products_list
+
+def get_pending_products():
+    '''Returns dictionary of products fetched from the db tabel'''
+    products = Product.query.filter(Product.status=="pending").all()
+    products_list={}
+    for idx,val in enumerate(products):
+        products_list[val.product_id]=Product.serialize(val)
+    print(products_list)
+    return products_list
+
 
 def get_product_by_id(id):
     product = Product.query.get(id)
-    #return Product.serialize(product)
     return product
+
+def approve_ad(product_id):
+    '''Sets status of the project with given id to approved.'''
+    product= Product.query.get(product_id)
+    product.status = "approved"
+    db.session.commit()
+
+    
 
 def get_available_products():
     '''Returns all available products that are not rented yet.'''
     subquery =db.session.query(RentedProduct.product_id)
-    products = Product.query.filter(Product.product_id.notin_(subquery)).all()
+    products = Product.query.filter(Product.product_id.notin_(subquery)).filter(Product.status == 'approved').all()
     print(f"products*******:{products}")
     products_list={}
     for idx,val in enumerate(products):
@@ -57,11 +82,6 @@ def get_available_products():
     
 def get_products(search_key):
     ''' Takes user search key and returns products having that key and are not rented.'''
-    # search = f"%{search_key}%"
-    # print(search)
-    # subquery =db.session.query(RentedProduct.product_id)
-    # products = Product.query.filter(Product.product_id.notin_(subquery))
-
     
     search_results = Product.query.join(ProductCategory).filter(or_(Product.title.like(f'%{search_key}%'),
                                             Product.description.like(f'%{search_key}%'),

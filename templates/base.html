@@ -34,37 +34,45 @@
         
         <ul class="navbar-nav ml-auto">
           {% if not session.current_user %}
-          <li class="nav-item" >
-            
-            <a class="nav-link" id ="login_link" href="/api/login">Login</a>
-          </li>
-            {% else: %}
-            <li>
+                  <li class="nav-item" >
+                    <a class="nav-link" id ="login_link" href="/api/login">Login</a>
+                  </li>
+            {% elif session.current_user_name =="admin" %}
+                    <input type="hidden" value={{session['current_user_name']}} id ="session_username"/>
+                    <li>
+                        <button class="btn btn-outline-success my-2 my-sm-0" id="approved_button" >Approved Ads</button>
+                    </li>
+                    <li>  
+                        <button class="btn btn-outline-success my-2 my-sm-0" id="pending_button" >Pending Ads</button>
+                    </li>
+                    <li>
+                        <a class="nav-link" id ="user_name" href="#">{{session['current_user_name']}}</a>
+                    </li>
+                    <li class="nav-item" >
+                        <a class="nav-link" id ="logout_link" href="/api/logout">Logout</a>
+                    </li>
 
-              
-                  <button class="btn btn-outline-success my-2 my-sm-0" id="my_ads_button" >My Ads</button>
-                
-           </li>
-           <li>  
-            <button class="btn btn-outline-success my-2 my-sm-0" id="my_rentals_button" >My Rentals</button>
-          </li>
-            <li>
-
-              <div class="search-container">
-                <div class="form-inline my-2 my-lg-0" >
-                  <input class="form-control mr-sm-2" id="searchKey" type="search" placeholder="Search">
-                  <button class="btn btn-outline-success my-2 my-sm-0" id="search_button" >Search</button>
-                </div>
-              </div>
-           </li>
-            <li>
-
-              <a class="nav-link" id ="user_name" href="#">{{session['current_user_name']}}</a>
-            </li>
-            <li class="nav-item" >
-            
-            <a class="nav-link" id ="logout_link" href="/api/logout">Logout</a>
-          </li>
+            {% else %}
+                <li>
+                      <button class="btn btn-outline-success my-2 my-sm-0" id="my_ads_button" >My Ads</button>     
+                </li>
+                <li>  
+                  <button class="btn btn-outline-success my-2 my-sm-0" id="my_rentals_button" >My Rentals</button>
+                </li>
+                  <li>
+                       <div class="search-container">
+                          <div class="form-inline my-2 my-lg-0" >
+                            <input class="form-control mr-sm-2" id="searchKey" type="search" placeholder="Search">
+                            <button class="btn btn-outline-success my-2 my-sm-0" id="search_button" >Search</button>
+                          </div>
+                        </div>
+                </li>
+                <li>
+                        <a class="nav-link" id ="user_name" href="#">{{session['current_user_name']}}</a>
+                </li>
+                <li class="nav-item" >
+                        <a class="nav-link" id ="logout_link" href="/api/logout">Logout</a>
+                </li>
             {% endif%}
           
           
@@ -74,7 +82,7 @@
   
     </nav>
     {% for msg in get_flashed_messages() %}
-      <p class="flash-msg">
+      <p id="flash_msg" class="flash-msg">
         {{ msg }}
       </p>
     {% endfor %}

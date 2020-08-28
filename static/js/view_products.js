@@ -1,15 +1,31 @@
 
 
 $(document).ready(function(){
-   $.get('/api/get-available-products',(res)=>{
+   if($('#session_username').val()=="admin"){
 
-   
-    for( key in res){
-        $('#list_products_div').append("<div class='col-sm-4'> <div class='panel panel-success'><div class='panel-heading'>Title:"+res[key].title+"</div><div class='panel-body'><a href='/api/get-product/"+res[key].product_id+"'><img src='"+res[key].s3_image_url+"'class='img-responsive' style='width:100%' alt='Image'/></a></div><div class='panel-footer'>Price:"+res[key].price+"</div></div></div></div>")
-         
-    }
+            $.get('/api/get-all-products',(res)=>{
+                console.log(res)
+                if(res){
+                    for( key in res){
+                        $('#list_products_div').append("<div class='col-sm-4'> <div class='panel panel-success'><div class='panel-heading'>Title:"+res[key].title+"</div><div class='panel-body'><a href='/api/get-product/"+res[key].product_id+"'><img src='"+res[key].s3_image_url+"'class='img-responsive' style='width:100%' alt='Image'/></a></div><div class='panel-footer'>Price:"+res[key].price+"</div></div></div></div>");
+                        
+                    }
+            };
+            });
 
-   });
+            
+   }
+   else{
+            $.get('/api/get-available-products',(res)=>{
+            
+            
+                for( key in res){
+                    $('#list_products_div').append("<div class='col-sm-4'> <div class='panel panel-success'><div class='panel-heading'>Title:"+res[key].title+"</div><div class='panel-body'><a href='/api/get-product/"+res[key].product_id+"'><img src='"+res[key].s3_image_url+"'class='img-responsive' style='width:100%' alt='Image'/></a></div><div class='panel-footer'>Price:"+res[key].price+"</div></div></div></div>");
+                    
+                }
+
+            });
+   };
    
 //    <div class="col-sm-4"> 
 //       <div class="panel panel-success">
@@ -21,6 +37,7 @@ $(document).ready(function(){
 //   </div>
 
 
+//Function to calculate Total Price for the product to rent based on no of days he wants to rent.
     function calculatePrice(start,end,values){
             diffDays = Math.round(Math.abs((start - end)/(values)));
             price = $("#price").val();
@@ -30,10 +47,55 @@ $(document).ready(function(){
 
     };
 
+//When User clicks rent button on view product page modal is shown
   $("#rent_button").click(function(){
         $("#rent_modal").modal();
     });
     
+
+//When admin clicks on approved_button He should see only products that are approved.
+
+$("#approved_button").click(function(){
+    $.get('/api/get-approved-products',(res)=>{
+        console.log(res)
+        $('#list_products_div').empty(); 
+        if(res.length > 0){
+            for( key in res){
+                $('#list_products_div').append("<div class='col-sm-4'> <div class='panel panel-success'><div class='panel-heading'>Title:"+res[key].title+"</div><div class='panel-body'><a href='/api/get-product/"+res[key].product_id+"'><img src='"+res[key].s3_image_url+"'class='img-responsive' style='width:100%' alt='Image'/></a></div><div class='panel-footer'>Price:"+res[key].price+"</div></div></div></div>");
+                
+            }
+        };
+       
+    });
+});
+
+//For admin to approve the pending product ads
+$("#approve_ad_button").click(function(){
+    formData={
+        productId : $('#product_id').val()};
+    $.post('/api/approve-ads',formData,(response)=>{
+        console.log(response)
+        if (response.redirect) {
+            window.location.href = response.redirect;
+          }
+       
+    });
+});
+//When admin clicks on pending button to see all products that are pending for approval.
+$("#pending_button").click(function(){
+    $.get('/api/get-pending-products',(res)=>{
+        console.log(res)
+        $('#list_products_div').empty(); 
+        if(res.length >0 ){
+            for( key in res){
+                $('#list_products_div').append("<div class='col-sm-4'> <div class='panel panel-success'><div class='panel-heading'>Title:"+res[key].title+"</div><div class='panel-body'><a href='/api/get-product/"+res[key].product_id+"'><img src='"+res[key].s3_image_url+"'class='img-responsive' style='width:100%' width='300' alt='Image'/></a></div><div class='panel-footer'>Price:"+res[key].price+"</div></div></div></div>");
+                
+            }
+        };
+        
+    });
+   // $('#flash_msg').hide();
+});
 
     $("#datepicker_from").datepicker({
         onClose: function () {

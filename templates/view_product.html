@@ -3,7 +3,7 @@
 
 {% block body %}
 <div>
-    <div class="col-3"><image src={{product.s3_image_url}}></image></div>
+    <div class="col-3"><image width="300" src={{product.s3_image_url}}></image></div>
     <div class="col-5">
         <P>product_id:{{product.product_id}}</P>
         <P>Title :{{product.title}}</P>
@@ -12,18 +12,22 @@
         <P>Price:{{product.price}}</P>
         <P>Avaialble From:{{product.available_from}}</P>
         <P>Available To:{{product.available_to}}</P>
+        {%if product.s3_video_url !='' %}
         <P>Video: <video width="300" controls>
           <source src={{product.s3_video_url}} type="video/mp4">
           
           Your browser does not support HTML video.
         </video></P>
+        {%endif%}
        
 
 
     </div>
-
-    <button type="button" class="btn btn-info btn-lg" id="rent_button">Rent Now</button>
-
+    {% if session.current_user_name =="admin" %}
+                  <input type="submit" id="approve_ad_button"  value="Approve"/>
+    {% else %}
+           <button type="button" class="btn btn-info btn-lg" id="rent_button">Rent Now</button>
+    {% endif %}
   <!-- Modal -->
   <div class="modal fade" id="rent_modal" role="dialog">
     <div class="modal-dialog">
@@ -55,8 +59,9 @@
             <div class="modal-footer">
            
                 <input type="hidden" value={{product.product_id}} id="product_id" name="product_id" ></input></P>
-                <input type="submit" id="modal_rent_button"  value="Rent Now"/>
                 
+                  <input type="submit" id="modal_rent_button"  value="Rent Now"/>
+               
             
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
             </div>

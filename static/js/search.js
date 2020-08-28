@@ -19,7 +19,6 @@ $(document).ready(function(){
     });
 
     $("#my_ads_button").click(function(){
-        alert("ads");
         $.get("/api/my-ads",(res)=>{
             if (res){
                 $('#list_products_div').empty();
@@ -33,7 +32,6 @@ $(document).ready(function(){
     
 
     $("#my_rentals_button").click(function(){
-        alert("rentals");
         $.get("/api/my-rentals",(res)=>{
             if (res){
                 $('#list_products_div').empty();
