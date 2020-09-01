@@ -10,6 +10,7 @@ from datetime import datetime
 import product_category_crud
 import product_crud
 import rented_product_crud
+from mail_service import send_request_approval_email
 
 
 app = Flask(__name__)
@@ -136,8 +137,12 @@ def post_ad():
         s3_video_url=""
     else:
         s3_video_url = get_s3_url(video_file.filename)
-    product_crud.create_product(owner_id,title,description,category,s3_image_url,s3_video_url,condition,available_from,available_to,price,'pending',False,created_date)
+    product=product_crud.create_product(owner_id,title,description,category,s3_image_url,s3_video_url,condition,available_from,available_to,price,'pending',False,created_date)
     flash('Ad created successfully')
+    email_id = user_crud.get_user_by_id(session['current_user']).email
+    name = user_crud.get_user_by_id(session['current_user']).username
+    print(f'email:: {email_id}')
+    send_request_approval_email(name,email_id,product)
     return jsonify(dict(redirect='/api/home'))
 
 @app.route('/api/get-all-categories')

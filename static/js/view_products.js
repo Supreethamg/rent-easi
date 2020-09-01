@@ -88,7 +88,7 @@ $("#pending_button").click(function(){
         $('#list_products_div').empty(); 
         if(res.length >0 ){
             for( key in res){
-                $('#list_products_div').append("<div class='col-sm-4'> <div class='panel panel-success'><div class='panel-heading'>Title:"+res[key].title+"</div><div class='panel-body'><a href='/api/get-product/"+res[key].product_id+"'><img src='"+res[key].s3_image_url+"'class='img-responsive' style='width:100%' width='300' alt='Image'/></a></div><div class='panel-footer'>Price:"+res[key].price+"</div></div></div></div>");
+                $('#list_products_div').append("<div class='col-sm-4'> <div class='panel panel-success'><div class='panel-heading'>Title:"+res[key].title+"</div><div class='panel-body'><a href='/api/get-product/"+res[key].product_id+"'><img src='"+res[key].s3_image_url+"'class='img-responsive' style='width:100%' width='300'cd ../ alt='Image'/></a></div><div class='panel-footer'>Price:"+res[key].price+"</div></div></div></div>");
                 
             }
         };
