@@ -56,15 +56,15 @@ def send_request_approval_email(name,email,product):
     client = boto3.client('ses',region_name=AWS_REGION,aws_access_key_id=config.S3_KEY,
     aws_secret_access_key=config.S3_SECRET)
 
-#     response = client.update_template(
-#   Template = {
-#     'TemplateName' : 'Rent-Easy-Template',
-#     'SubjectPart'  : 'Rent-Easi : Approval request',
-#     'TextPart'     : 'There is pending Product Ad for approval.\r \n Details :\n Name:{{name}}\n Email:{{email}}',
-#     'HtmlPart'     : '<h4>Hello Admin!,</h4><p>There is pending Product Ad for approval<br/> Details:<br/>Name:{{name}}Email : {{email}}</p>'
+    response = client.update_template(
+  Template = {
+    'TemplateName' : 'Rent-Easy-Template',
+    'SubjectPart'  : 'Rent-Easi : Approval request',
+    'TextPart'     : 'There is pending Product Ad for approval.\r \n Details :\n Name:{{name}}\n Email:{{email}}',
+    'HtmlPart'     : '<h4>Hello Admin!,</h4><p>There is pending Product Ad for approval<br/> Details:<br/>Name:{{name}}<br/>Email : {{email}}<br/>Product Id :{{pid}}<br/>Title :{{title}}</p>'
      
-#   })
-    json_data = {'name':name,'email':email}
+  })
+    json_data = {'name':name,'email':email,'pid':product.product_id,'title':product.title}
     
     # Try to send the email.
     try:
