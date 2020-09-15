@@ -123,9 +123,9 @@ def post_ad():
     print(f'video:{video_file}')
     condition= request.form.get("condition")
     available_from=request.form.get("available_from")
-    available_from = datetime.strptime(available_from,'%Y-%m-%d').date()
+    #available_from = datetime.strptime(available_from,'%Y-%m-%d').date()
     available_to= request.form.get("available_to")
-    available_to = datetime.strptime(available_to,'%Y-%m-%d').date()
+    #available_to = datetime.strptime(available_to,'%Y-%m-%d').date()
     print(f"available_from:{available_from}")
     price=request.form.get("price")
     created_date = datetime.date(datetime.now())
@@ -138,11 +138,12 @@ def post_ad():
     else:
         s3_video_url = get_s3_url(video_file.filename)
     product=product_crud.create_product(owner_id,title,description,category,s3_image_url,s3_video_url,condition,available_from,available_to,price,'pending',False,created_date)
-    flash('Ad created successfully')
+    
     email_id = user_crud.get_user_by_id(session['current_user']).email
     name = user_crud.get_user_by_id(session['current_user']).username
     print(f'email:: {email_id}')
     send_request_approval_email(name,email_id,product)
+    flash('Ad created successfully !')
     return jsonify(dict(redirect='/api/home'))
 
 @app.route('/api/get-all-categories')
@@ -153,7 +154,7 @@ def get_all_categories():
 
 @app.route('/api/get-available-products')
 def get_available_products():
-    products= product_crud.get_available_products()
+    products= product_crud.get_available_products(session['current_user'])
     return jsonify(products)
 
 @app.route('/api/get-all-products')
@@ -181,7 +182,7 @@ def get_approved_products():
 def get_user_ads():
     products= product_crud.get_user_ads(session['current_user'])
     if not products:
-        flash('Currrently your have not posted product ads!')
+        flash('Currrently you dont have any product ads!')
     return jsonify(products)
 
 
@@ -189,7 +190,7 @@ def get_user_ads():
 def get_user_rentals():
     products= product_crud.get_user_rentals(session['current_user'])
     if not products:
-        flash('Currrently your have not rented any products!')
+        flash('Currrently your have not rented any products !')
     return jsonify(products)
 
 
@@ -198,7 +199,7 @@ def get_product(product_id):
     """Show details on a particular product."""
     print("inside get_product  :{product_id}")
     product = product_crud.get_product_by_id(product_id)
-    return render_template('view_product.html', product=product)
+    return render_template('view_product.html', product=product, category =product.product_category.category_name, owner_name =product.owner.username)
     
 
 @app.route('/api/rent-product',methods=['POST'])
@@ -216,7 +217,7 @@ def rent_product():
     print(f'price:{price}')
     rproduct = rented_product_crud.create_rented_product(product_id,product.owner_id,renter_id,rented_from,rented_to,price,None,created_date)
     if rproduct:
-        flash(f'You rented {product.title}!!')
+        flash(f'You rented {product.title} !!')
     
     return redirect("/api/home")
 
@@ -225,7 +226,7 @@ def rent_product():
 def approve_ad():
     product_id=request.form.get("productId")
     product_crud.approve_ad(product_id)
-    flash("Ad Approved!")
+    flash("Ad Approved !")
     return jsonify(dict(redirect='/api/home'))
 
     
@@ -235,7 +236,8 @@ def search_product():
     search_key=request.form.get("searchKey")
     print(f'seachkey:{search_key}')
     products = product_crud.get_products(search_key)
-
+    if not products:
+        flash("No such Ads Avaialble !")
     return jsonify(products)
 # @app.route('/file')
 # def upload_file_page():

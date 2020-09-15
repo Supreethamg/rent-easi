@@ -16,16 +16,22 @@
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" 
       integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" 
       crossorigin="anonymous">
+
+      <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;1,700&display=swap" rel="stylesheet">
+      
   <!-- Load Font Awesome -->
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css"
    integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg"
     crossorigin="anonymous">
     <link rel="stylesheet" href="/static/css/bootstrap_style.css">
+    <link rel="stylesheet" href="/static/css/card.css">
+    <link rel="stylesheet" href="/static/css/ad_details.css">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" />
   </head>
   <body>
-    <nav class="navbar navbar-expand-lg navbar-dark">
+    <nav class="navbar navbar-expand-lg navbar-dark font-weight-bold">
 
-      <a id="ubermelon-logo" class="navbar-brand" href="#">Rent Easi</a>
+      <a id="logo"  href="#"><image style="height: 40px;" src="/static/image/logo.png"></image></a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -38,14 +44,25 @@
                     <a class="nav-link" id ="login_link" href="/api/login">Login</a>
                   </li>
             {% elif session.current_user_name =="admin" %}
+
+            <div class="searchbar">
+              <input class="search_input" type="text" name="" id="searchKey" placeholder="Search...">
+              <a href="#" class="search_icon" id="search_button"><i class="fas fa-search" style="font-weight: 1000;"></i></a>
+            </div>
                     <input type="hidden" value={{session['current_user_name']}} id ="session_username"/>
-                    <li>
-                        <button class="btn btn-outline-success my-2 my-sm-0" id="approved_button" >Approved Ads</button>
+                    <li class="nav-item">
+                      <a class="nav-link" id="home_button_user" >Home</a>
                     </li>
-                    <li>  
-                        <button class="btn btn-outline-success my-2 my-sm-0" id="pending_button" >Pending Ads</button>
+                    <li class="nav-item">
+                        <a class="nav-link" id="approved_button" >Approved Ads</a>
+                    </li>
+                    <li class="nav-item">  
+                        <a class="nav-link" id="pending_button" >Pending Ads</a>
                     </li>
                     <li>
+                      <li class="nav-item">
+                        <a class="nav-link"><image class="avatar" id="search_button" src="/static/image/avatar.png"></image></a>
+                     </li>
                         <a class="nav-link" id ="user_name" href="#">{{session['current_user_name']}}</a>
                     </li>
                     <li class="nav-item" >
@@ -53,20 +70,31 @@
                     </li>
 
             {% else %}
-                <li>
-                      <button class="btn btn-outline-success my-2 my-sm-0" id="my_ads_button" >My Ads</button>     
+
+            <div class="searchbar">
+              <input class="search_input" type="text" name="" id="searchKey" placeholder="Search...">
+              <a href="#" class="search_icon" id="search_button"><i class="fas fa-search" style="font-weight: 1000;"></i></a>
+            </div>
+                 <li class="nav-item" >
+                <a class="nav-link" id="home_button_user" >Home</a >
+              </li>
+              <li class="nav-item" >
+                      <a class="nav-link" id="my_ads_button" >My Ads</a>     
                 </li>
-                <li>  
-                  <button class="btn btn-outline-success my-2 my-sm-0" id="my_rentals_button" >My Rentals</button>
+                <li class="nav-item">  
+                  <a class="nav-link" id="my_rentals_button" >My Rentals</a>
                 </li>
-                  <li>
+                  <!-- <li>
                        <div class="search-container">
                           <div class="form-inline my-2 my-lg-0" >
                             <input class="form-control mr-sm-2" id="searchKey" type="search" placeholder="Search">
                             <button class="btn btn-outline-success my-2 my-sm-0" id="search_button" >Search</button>
                           </div>
                         </div>
-                </li>
+                </li> -->
+                <li class="nav-item">
+                  <a class="nav-link "><image class="avatar" id="search_button" src="/static/image/avatar.png"></image></a>
+               </li>
                 <li>
                         <a class="nav-link" id ="user_name" href="#">{{session['current_user_name']}}</a>
                 </li>

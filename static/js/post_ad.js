@@ -44,6 +44,37 @@ $(document).ready(function(){
                         $("#category").append("<option value='"+res[key].category_id+"'>"+res[key].category_name+"</option>");
                     }
       });
+
+      
+      $("#cancel_ad_button").click(function(){
+        window.location.href="/api/home"
+    });
+
+    $( function() {
+        $( "#available_from" ).datepicker({
+            onClose: function () {
+                $("#available_to").datepicker(
+                    "change", {
+                    minDate: new Date($('#available_from').val())
+                });
+                $("#available_from").datepicker({dateFormat: "mm/dd/yy"});
+            }
+        });
+      } );
+      
+      $( function() {
+        $( "#available_to" ).datepicker({
+
+            onClose: function () {
+                $("#available_from").datepicker(
+                    "change", {
+                    maxDate: new Date($('#available_to').val())
+                });
+                $("#datepicker_to").datepicker({dateFormat: "mm/dd/yy"});
+                available_to
+            }
+        });
+      } );
   });
 
 

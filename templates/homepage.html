@@ -4,19 +4,19 @@
 {% block body %}
 
 
-<style>
-body{
-  margin-top:20px;
-}
-</style>
-  <ul>
-    <li><a href="/api/post-ad">Post an Ad</a></li>
-    
-  </ul>
+{% if session.current_user_name !="admin" %}
   
-
-  <div id="list_products_div" class="container">
-   
+    <a id="post_ad" class="btn btn-green btn-sm" href="/api/post-ad">POST AD</a>
+    
+  
+  {%endif%}
+  
+  <div class="container">
+    
+    
+      <div id="list_products_div" class="row">
+      
+      </div>
   </div>
 
   

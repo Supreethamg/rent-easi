@@ -1,9 +1,17 @@
 /*   Sitewide  */
 
 .navbar {
-	background-color: #b4c157;
+	/* background-color: #b4c157; */
+	/* background-color:#5f6538; */
+	background-color:#979e64;
 	color: white;
 	border-radius: 0px;
+	/* position: fixed;
+	width:100% ;
+  top: 0; */
+  font-size: 16px;
+ 
+	
 }
 
 #ubermelon-logo, #ubermelon-logo:hover, .navbar-dark .navbar-brand {
@@ -14,8 +22,9 @@
 	color: white;
 }
 
+
 section {
-	margin-top: 50px;
+	/* margin-top: 50px; */
 }
 
 
@@ -49,10 +58,7 @@ section {
 #modalLabel {
 	color: black;
 }
-.navbar {
-	margin-bottom: 50px;
-	border-radius: 0;
-  }
+
   
   /* Remove the jumbotron's default bottom margin */ 
    .jumbotron {
@@ -63,4 +69,173 @@ section {
   footer {
 	background-color: #f2f2f2;
 	padding: 25px;
+  }
+
+
+  /* Supreetha */
+
+  body {
+	/* font-family: Arial !important;
+	
+	background-image: url('img_girl.jpg');
+	background-image:  linear-gradient(rgb(230, 230, 230), transparent);  
+	background-repeat: no-repeat; */
+  /* background-image: url('../image/bg.jpg'); */
+ background-color: linear-gradient(180deg,#bdbcbc,transparent); 
+  background-repeat: no-repeat;
+  background-attachment: fixed; 
+  background-size: 100% 100%;
+  background:#eee;
+  font-family: 'Open Sans', sans-serif;
+  
+ }
+
+.login_register_base{
+
+	background-image: url('../image/bg_image.png');
+	background-repeat: no-repeat;
+	background-attachment: fixed; 
+	background-size: 100% 100%;
+	background-size: cover;
+	/* padding-top: 65px;  */
+	padding-left: 160px;
+	
+}
+
+.main {
+	padding: 16px;
+	margin-top: 30px;
+	height: 1500px; /* Used in this example to enable scrolling */
+  }
+
+  .avatar{
+	  width:35px;
+	  height: 35px;
+  }
+
+  .round-edge{
+
+	border-radius: 2%;
+  }
+  #list_products_div{
+		 /* margin-top: 30px; */
+		height: 680px;
+		margin-top: 80px;
+  }
+
+  /* search box */
+
+  .searchbar{
+    margin-bottom: auto;
+    margin-top: auto;
+    height: 42px;
+    background-color:#acbb90;
+    border-radius: 30px;
+    padding: 5px;
+    }
+
+    .search_input{
+    color: white;
+    border: 0;
+    outline: 0;
+    background: none;
+    width: 0;
+    caret-color:transparent;
+    line-height: 40px;
+    transition: width 0.4s linear;
+    }
+
+    .searchbar:hover > .search_input{
+    padding: 0 10px;
+    width: 400px;
+    caret-color:rgba(255, 51, 0, 0.61);
+    transition: width 0.4s linear;
+    }
+
+    .searchbar:hover > .search_icon{
+    background: rgb(245, 239, 239);
+    color: #e74c3c;
+    }
+
+    .search_icon{
+    height: 38px;
+    width: 43px;
+    float: right;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    color:white;
+    text-decoration:none;
+	}
+	
+	.flash-msg{
+    color:black;
+    font-size: 16px;
+    font-weight: bold;
+    padding-left: 10%;
+    background-color: #d8d8d8;
+    border-color:#d8d8d8;
+    color:#16366f;
+
+	}
+	/* #form_login{
+	padding-bottom: 40px;
+    padding-top: 40px;
+
+
+  } */
+  
+
+  #post_ad{
+    float:right;
+    margin-right: 40px;
+    margin-top: 35px;
+  }
+
+  .btn-green{
+    background-color: #16a085;
+    border-color: #16a085;
+    color:white;
+    height: 45px;
+    width: 100px;
+    padding: 10px;
+    font-size: 18px;
+    margin-right: 19px;
+  
+  }
+
+
+  .btn-green:hover{
+    
+    color: #0f4627;
+  
+  }
+  .btn-cancel{
+    background-color: #b5bebd;
+    border-color: #b5bebd;
+    color: white;
+    height: 45px;
+    width: 85px;
+    padding: 9px;
+    font-size: 18px;
+  
+  }
+  .btn-cancel:hover{
+    
+    color: #e74c3c;
+  
+  }
+
+  #post_product_p{
+    margin-left:110px;
+  }
+
+  .page-heading{
+        
+        padding-top: 25px;
+        padding-left: 45%;
+        font-weight: bold;
+        color:#16a085
+
   }

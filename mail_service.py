@@ -24,7 +24,7 @@ def send_request_approval_email(name,email,product):
     AWS_REGION = config.get_region()
 
     # The subject line for the email.
-    SUBJECT = "RentEasi: Ad Approval request"
+    SUBJECT = "RentEazi: Ad Approval request"
 
     # The email body for recipients with non-HTML email clients.
     BODY_TEXT = ("Hello Admin!\n" 
@@ -36,8 +36,9 @@ def send_request_approval_email(name,email,product):
     # The HTML body of the email.
     BODY_HTML = """<html>
     <head></head>
-    <body>
-    <h4>RentEasi Pending Approval</h4>
+    <body style='background-color:powderblue;'>
+    <div> <image src="/static/image/logo.png" /></div>
+    <h4>RentEazi Pending Approval</h4>
     <p>Hello Admin! <br/>
       There is a pending product Ad for approval.<br/>
       <br/>
@@ -56,14 +57,14 @@ def send_request_approval_email(name,email,product):
     client = boto3.client('ses',region_name=AWS_REGION,aws_access_key_id=config.S3_KEY,
     aws_secret_access_key=config.S3_SECRET)
 
-    response = client.update_template(
-  Template = {
-    'TemplateName' : 'Rent-Easy-Template',
-    'SubjectPart'  : 'Rent-Easi : Approval request',
-    'TextPart'     : 'There is pending Product Ad for approval.\r \n Details :\n Name:{{name}}\n Email:{{email}}',
-    'HtmlPart'     : '<h4>Hello Admin!,</h4><p>There is pending Product Ad for approval<br/> Details:<br/>Name:{{name}}<br/>Email : {{email}}<br/>Product Id :{{pid}}<br/>Title :{{title}}</p>'
+  #   response = client.update_template(
+  # Template = {
+  #   'TemplateName' : 'Rent-Easy-Template',
+  #   'SubjectPart'  : 'Rent-Easi : Approval request',
+  #   'TextPart'     : 'There is pending Product Ad for approval.\r \n Details :\n Name:{{name}}\n Email:{{email}}',
+  #   'HtmlPart'     : '<h4>Hello Admin!,</h4><p>There is pending Product Ad for approval<br/> Details:<br/>Name:{{name}}<br/>Email : {{email}}<br/>Product Id :{{pid}}<br/>Title :{{title}}</p>'
      
-  })
+  # })
     json_data = {'name':name,'email':email,'pid':product.product_id,'title':product.title}
     
     # Try to send the email.

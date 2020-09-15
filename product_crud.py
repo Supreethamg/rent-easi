@@ -1,5 +1,7 @@
 from model import db,User,Product,connect_to_db,RentedProduct,ProductCategory
 from sqlalchemy import or_
+from sqlalchemy import and_
+ 
  
 def create_product(owner_id,title,description,category_id,s3_image_url,s3_video_url,condition,available_from,available_to,price,status,isverified,created_date):
     '''Create and return new User'''
@@ -69,10 +71,10 @@ def approve_ad(product_id):
 
     
 
-def get_available_products():
+def get_available_products(user_id):
     '''Returns all available products that are not rented yet.'''
     subquery =db.session.query(RentedProduct.product_id)
-    products = Product.query.filter(Product.product_id.notin_(subquery)).filter(Product.status == 'approved').all()
+    products = Product.query.filter(Product.product_id.notin_(subquery)).filter(and_((Product.status == 'approved'),(Product.owner_id != user_id))).all()
     print(f"products*******:{products}")
     products_list={}
     for idx,val in enumerate(products):

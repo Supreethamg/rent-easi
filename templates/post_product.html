@@ -4,50 +4,71 @@
 {% block body %}
 
 
-  <h2 id="heading">Create Ad</h2>
-  <form  method ="POST" id='form_post_ad' enctype="multipart/form-data">
-    
-    
-    
-    <p>Product Title : <input type="text" name="title" required>
-    </p>
-    <p>
-      category <select id="category" name ="category" required> 
-        <option value="0">- Select -</option>
-      </select>
-    </p>
-    <p>
-      Description <input type="textarea" name="description" >
-    </p>
-    <p>
-      Upload Image : <input type="file" name="image" id ="image" required>
-    </p>
-    <p>
-      Upload Video : <input type="file" name="video" id ="video">
-    </p>
-
-    <p>
-      Condition <input type="text" name="condition" required>
-    </p>
-    <p>
-      Available From : <input type="date" name="available_from" required>
-    </p>
-    <p>
-      Available To : <input type="date" name="available_to" required>
-    </p>
-    <p>
-      Price : <input type="text" name="price" required>
-    </p>
-      
-      
-  
-      <p>
-        <input id ="action" id ='post_ad_button' type="submit" value='Post'>
-      </p>
-      
-      
-    
-    </form>
+<div class="row min-vh-100">
+  <div class="col-12">
+    <!-- Main Content -->
+    <div class="row">
+        <div class="col-12 mt-3 text-center text-uppercase">
+            <h2>Create Ad</h2>
+        </div>
+    </div>
+    <main class="row">
+      <div class="col-lg-4 col-md-6 col-sm-8 mx-auto bg-white py-3 mb-4 round-edge">
+          <div class="row">
+              <div class="col-12">
+                <form  method ="POST" id='form_post_ad' enctype="multipart/form-data">
+                  <div class="form-group">
+                    <label >   Product Title  </label>
+                    <input type="text" name="title" class="form-control" required>
+                  </div>
+                  <div class="form-group">
+                    <label > Category  </label>
+                    <select id="category" name ="category" class="form-control" required> 
+                      <option value="0">- Select -</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label> Description  </label>
+                    <textarea rows="3" cols="25" name="description" class="form-control" required ></textarea>
+                  </div>
+                  <div class="form-group">
+                    <label>  Upload Image  </label>
+                    <input type="file" name="image" id ="image" class="form-control"  required>
+                  </div>
+                  <div class="form-group">
+                    <label>  Upload Video  </label>
+                    <input type="file" name="video" id ="video" class="form-control">
+                  </div>
+                  <div class="form-group">
+                    <label>  Condition  </label>
+                    <input type="text" name="condition" class="form-control" required>
+                  </div>
+                  <div class="form-group">
+                    <label>   Available From  </label>
+                    <input type="text" id="available_from" name="available_from" class="form-control" required> 
+                  </div>
+                  <div class="form-group">
+                    <label>   Available To </label>
+                    <input type="text" id = "available_to" name="available_to" class="form-control" required>
+                  </div>
+                  <div class="form-group">
+                    <label>   Price per day </label>
+                    <input type="text" name="price"class="form-control"  required>
+                  </div>
+                  <div class="form-group">
+                    <p id="post_product_p">
+                      <input id ="action" id ='post_ad_button' class="btn btn-green" type="submit" value='Post Ad'>
+                    
+                    
+                      <input  id ='cancel_ad_button'  class="btn btn-cancel" type="button" value='Cancel'>
+                    </p>
+                  </div>
+                </form>
+              </div>
+          </div>
+        </div>
+      </main>
+    </div>
 </div>
 <!-- <script>
 "use strict";

@@ -1,27 +1,98 @@
 {% extends 'base.html' %}
 {% block title %} Rent Easi Login{% endblock%}
 
-{% block body %}
-<h1>Welcome!</h1>
-<!-- <button id= 'btn_login'>Login</button>  <button id ='btn_create_ac'>Create account</button>
-<div id ="div_login" style="visibility: hidden;"> -->
-  <h2 id="heading">Login</h2>
-  <form  method ="POST" id='form_login' action='/api/login'>
-  
-    <p>
-        User Name  <input type="text" name="username">
-      </p>
-  
-      <p>
-        Password <input type="password" name="password">
-      </p>
-  
-      <p>
-        <input id ="action" type="submit" value='Submit'>
-      </p>
-      <div><label>Dont have an account? Register </label> <a id="register_link" href='/api/register'> here </a></p>
-    
-    </form>
-    
+{% block body %}     
+
+
+    <!-- <main> -->
+     <!-- <div class="login_register_base row min-vh-100 "  >
       
+      <div class="col-12  ">
+       
+        <div class="row">
+            <div class="col-12 mt-3 text-center   text-uppercase">
+              <h2 id="heading">Login</h2>
+            </div>
+        </div>
+      
+        <main class="row">
+            <div class="col-lg-4 col-md-6 col-sm-8 mx-auto bg-white py-3 mb-4 round-edge">
+                <div class="row">
+                    <div class="col-12">
+                      <form  method ="POST" id='form_login' action='/api/login'>
+                            <div class="form-group">
+                                <label>Username</label>
+                                <input type="text" name="username" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label >Password</label>
+                                <input type="password" id="password" name="password" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                              <div class="form-check">
+                                  
+                              <label>Dont have an account? Register </label> <a id="register_link" href='/api/register'> here </a></p>
+                              </div>
+                          </div>
+                            <div class="form-group">
+                                <button type="submit" id="action" style="margin-left: 190px;" value='Login' class="btn btn-outline-dark">Login</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+      
+        </main> -->
+        <!-- Main Content -->
+      <!-- </div> -->
+      
+    <!-- </main>  -->
+
+
+
+
+
+
+    <div class="row min-vh-100 login_register_base " style="height:690px;">
+      <div class="col-12 ">
+        <!-- Main Content -->
+        <div class="row">
+            <div class="col-12 mt-3 text-center text-uppercase ">
+                <h2>Login</h2>
+            </div>
+        </div>
+      
+        <main class="row"></main>
+            <div class="col-lg-4 col-md-6 col-sm-8 mx-auto bg-white py-3 mb-4 round-edge">
+                <div class="row">
+                    <div class="col-12">
+                      <form  method ="POST" id='form_login' action='/api/login' >
+                        <div class="form-group">
+                            <label>Username</label>
+                            <input type="text" name="username" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label >Password</label>
+                            <input type="password" id="password" name="password" class="form-control" required>
+                        </div>
+                        
+                        <div class="form-group">
+                          <div class="form-check">
+                              
+                          <label>Dont have an account? Register </label> <a id="register_link" href='/api/register'> here </a></p>
+                          </div>
+                      </div>
+                        <div class="form-group">
+                            <button type="submit" id="action" style="margin-left: 190px;" value='Login' class="btn btn-green">Login</button>
+                        </div>
+                    </form>
+                      
+                    </div>
+                </div>
+            </div>
+      
+        </main>
+        <!-- Main Content -->
+      </div>
+      </div>
 {% endblock %}
